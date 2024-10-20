@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ufw allow 1488/tcp
+
 # Установка Node.js и npm
 echo "Устанавливаем Node.js и npm..."
 sudo apt update
@@ -16,10 +18,15 @@ sudo npm install -g pm2
 
 # Создание файла server.js
 echo "Создаем файл server.js..."
+
+mkdir ping
+
+cd /ping
+
 cat > server.js <<EOL
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: 8080, path: '/ping' });
+const wss = new WebSocket.Server({ port: 1488, path: '/ping' });
 
 wss.on('connection', function connection(ws) {
     console.log('Новое соединение установлено');
