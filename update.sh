@@ -60,7 +60,7 @@ fi
 echo "Установленный домен: $DOMAIN"
 
 # Получение SSL-сертификата от Let's Encrypt с использованием Certbot
-sudo certbot certonly --standalone --preferred-challenges http -d $DOMAIN
+sudo certbot certonly --standalone --preferred-challenges http -d $DOMAIN --register-unsafely-without-email --agree-tos
 
 # Объявляем пути к SSL-сертификатам
 SSL_CERT="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
