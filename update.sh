@@ -119,6 +119,8 @@ EOL
 echo "Запуск server.js через PM2..."
 pm2 restart server.js
 
+pm2 save
+
 # Автоматическое обновление SSL-сертификата
 echo "Настройка автоматического обновления SSL-сертификата..."
 (crontab -l 2>/dev/null; echo "0 0 * * 0 /usr/bin/certbot renew --post-hook 'pm2 restart server'") | crontab -
