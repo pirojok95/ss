@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ufw allow 80/tcp
+
 # Установка Certbot и зависимостей для SSL
 echo "Устанавливаем Certbot для SSL..."
 sudo apt install -y certbot
@@ -65,8 +67,6 @@ sudo certbot certonly --standalone --preferred-challenges http -d $DOMAIN --regi
 # Объявляем пути к SSL-сертификатам
 SSL_CERT="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
 SSL_KEY="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
-
-cd /ping
 
 # Создание WebSocket-сервера с SSL и автоматическим выбором домена по IP
 cat > server.js <<EOL
